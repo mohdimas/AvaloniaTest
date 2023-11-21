@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTemplate x:Key="SplashScreenTemplate">
+        <Panel x:Name="SplashScreenPanel">
+            <Path Classes="MailbirdPath"
+                  Width="150"
+                  Height="150"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Fill="Red" />
+        </Panel>
+    </ControlTemplate>
+</ResourceDictionary>
