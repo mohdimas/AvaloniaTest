@@ -2,7 +2,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
+        xmlns:collections="using:System.Collections"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:local="clr-namespace:AvaloniaTest"
         x:Class="AvaloniaTest.MainWindow"
         Title="AvaloniaTest">
     <Window.Resources>
@@ -12,26 +17,62 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <UniformGrid>
-        <DockPanel>
-            <TextBlock DockPanel.Dock="Top"
-                       HorizontalAlignment="Center"
-                       Text="From a template" />
+    <TabControl SelectedIndex="1">
+        <TabItem Header="Style issue">
+            <UniformGrid x:Name="LayoutRoot">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top"
+                               HorizontalAlignment="Center"
+                               Text="From a template" />
 
-            <ContentControl Template="{StaticResource SplashScreenTemplate}" />
-        </DockPanel>
+                    <ContentControl Template="{StaticResource SplashScreenTemplate}" />
+                </DockPanel>
 
-        <DockPanel>
-            <TextBlock DockPanel.Dock="Top"
-                       HorizontalAlignment="Center"
-                       Text="From a path directly" />
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top"
+                               HorizontalAlignment="Center"
+                               Text="From a path directly" />
 
-            <Path Classes="MailbirdPath"
-                  Width="150"
-                  Height="150"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center"
-                  Fill="Red" />
-        </DockPanel>
-    </UniformGrid>
+                    <Path Classes="MailbirdPath"
+                          Width="150"
+                          Height="150"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Fill="Red" />
+                </DockPanel>
+            </UniformGrid>
+        </TabItem>
+
+        <TabItem Header="Logical children style issue">
+            <UniformGrid>
+                <UniformGrid.Resources>
+                    <collections:ArrayList x:Key="List">
+                        <system:String>1</system:String>
+                        <system:String>2</system:String>
+                        <system:String>3</system:String>
+                        <system:String>4</system:String>
+                        <system:String>5</system:String>
+                        <system:String>6</system:String>
+                        <system:String>7</system:String>
+                    </collections:ArrayList>
+                </UniformGrid.Resources>
+
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top"
+                               HorizontalAlignment="Center"
+                               Text="Without adding to logical children, the TextBox is added but contains no style or template. Can be verified by opening dev tools." />
+                    <local:CustomItemsControl ItemsSource="{StaticResource List}" />
+                </DockPanel>
+
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top"
+                               HorizontalAlignment="Center"
+                               Text="When added to logical children, the TextBox is rendered correctly." />
+                    <local:CustomItemsControl ItemsSource="{StaticResource List}"
+                                              AddToLogicalChildren="True" />
+                </DockPanel>
+
+            </UniformGrid>
+        </TabItem>
+    </TabControl>
 </Window>
