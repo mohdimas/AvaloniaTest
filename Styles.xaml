@@ -18,10 +18,14 @@
         </Style>
 
         <Style Selector="TextBlock">
+                <Setter Property="HorizontalAlignment"
+                        Value="Left" />
                 <Setter Property="TextWrapping"
                         Value="Wrap" />
                 <Setter Property="MaxWidth"
-                        Value="200" />
+                        Value="400" />
+                <Setter Property="Margin"
+                        Value="0,0,0,20" />
         </Style>
 
         <Style Selector="local|CustomItemsControl">

@@ -59,14 +59,12 @@
 
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top"
-                               HorizontalAlignment="Center"
                                Text="Without adding to logical children, the TextBox is added but contains no style or template. Can be verified by opening dev tools." />
                     <local:CustomItemsControl ItemsSource="{StaticResource List}" />
                 </DockPanel>
 
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top"
-                               HorizontalAlignment="Center"
                                Text="When added to logical children, the TextBox is rendered correctly." />
                     <local:CustomItemsControl ItemsSource="{StaticResource List}"
                                               AddToLogicalChildren="True" />
